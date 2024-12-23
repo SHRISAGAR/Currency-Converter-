@@ -1,0 +1,33 @@
+# Currency Converter Program
+
+# Exchange rates dictionary (example rates, replace with live data for accuracy)
+exchange_rates = {
+    "USD": {"INR": 82.5, "EUR": 0.92, "GBP": 0.75},
+    "INR": {"USD": 0.012, "EUR": 0.011, "GBP": 0.0091},
+    "EUR": {"USD": 1.09, "INR": 88.5, "GBP": 0.81},
+    "GBP": {"USD": 1.33, "INR": 101.5, "EUR": 1.23}
+}
+
+def currency_converter(amount, from_currency, to_currency):
+    # Check if the currencies exist in the dictionary
+    if from_currency in exchange_rates and to_currency in exchange_rates[from_currency]:
+        rate = exchange_rates[from_currency][to_currency]
+        converted_amount = amount * rate
+        return converted_amount
+    else:
+        return "Conversion rate not available."
+
+# User input
+print("Welcome to the Currency Converter!")
+amount = float(input("Enter the amount: "))
+from_currency = input("Enter the currency you have (e.g., USD, INR, EUR, GBP): ").upper()
+to_currency = input("Enter the currency you want to convert to (e.g., USD, INR, EUR, GBP): ").upper()
+
+# Conversion
+result = currency_converter(amount, from_currency, to_currency)
+
+# Output result
+if isinstance(result, str):
+    print(result)
+else:
+    print(f"{amount} {from_currency} is equal to {result:.2f} {to_currency}")
